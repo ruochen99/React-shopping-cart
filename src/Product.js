@@ -14,20 +14,20 @@ class Product extends React.Component {
     this.state = { number: 1 };
   }
 
-	addToCart = (props) => {
-		this.setState({ number: this.state.number + 1 });
-		if (props.limit >= this.state.number) {
-			alert("There are " + this.state.number + " " + props.name + " in your cart!");
-		} else if (props.limit === 0) {
-			alert("This item is out of stock!");
-		} else {
-			alert("There are too many " + props.name + " in your cart!");
-		}
-	}
-
-	callAddToCart = () => {
-		this.addToCart(this.props);
-	}
+	// addToCart = (props) => {
+	// 	this.setState({ number: this.state.number + 1 });
+	// 	if (props.limit >= this.state.number) {
+	// 		alert("There are " + this.state.number + " " + props.name + " in your cart!");
+	// 	} else if (props.limit === 0) {
+	// 		alert("This item is out of stock!");
+	// 	} else {
+	// 		alert("There are too many " + props.name + " in your cart!");
+	// 	}
+	// }
+	//
+	// callAddToCart = () => {
+	// 	this.addToCart(this.props);
+	// }
 
 	render() {
 		return (
@@ -44,16 +44,18 @@ class Product extends React.Component {
 						<br />
 						<br />
 	    		</div>
-	    		<div class="ui bottom attached button" onClick = {this.callAddToCart}>
+	    		<div class="ui bottom attached button" onClick = {() => this.props.onAddToCart(this.props.name, this.props.price)}>
 	     	 		<i class="add icon"></i>
 	     			 Add to Cart
 	    		</div>
+					<div class="ui bottom attached button" onClick = {() => this.props.onRemoveItem(this.props.name)}>
+					 <i class="remove icon"></i>
+						Remove from Cart
+					</div>
 	  			</div>
 			</div>
 		);
 }
 };
-
-
 
 export default Product;
